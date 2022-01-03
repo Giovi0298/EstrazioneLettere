@@ -1,0 +1,84 @@
+html{
+  background-color: rgb(15, 15, 15);
+  color: white;
+}
+
+#azioni, #dati{
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+#azioni{
+  top: 5px;
+  height: 5%;
+
+  display: grid;
+  grid-template-columns: 1.5% 30.66% 2.5% 30.66% 2.5% 30.66% 1.5%;
+
+  button,
+  #alfabeto,
+  #tempo{
+    width: 100%;
+    height: 100%;
+  }
+
+  button{
+    background: yellowgreen;
+  }
+}
+
+#dati{
+  top: 6.5%;
+  bottom: 0;
+
+  display: grid;
+  grid-template-rows: 85px auto 30% 85px;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+  
+    li {
+      float: left;
+      width: 40px;
+      height: 40px;
+      padding: 15px;
+      margin: 2px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: rgb(173, 173, 173);
+  
+      text-align: center;
+      font-size: 30px;
+      vertical-align: middle;
+
+      background: rgb(50, 50, 50);
+    }
+  }
+
+  #disponibili,
+  #estratta,
+  #timer,
+  #fatte{
+    width: 100%;
+    height: 100%;
+  }
+  
+  #estratta,
+  #timer {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #estratta {
+    font-size: 1750%;
+  }
+  
+  #timer {
+    font-size: 750%;
+  }
+}

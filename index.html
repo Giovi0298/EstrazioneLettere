@@ -9,67 +9,20 @@
     <!--Script VUE-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-    <style>
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        height: 15%;
-        overflow: auto;
-
-        position: absolute;
-        left: 0;
-        right: 0;
-      }
-      li {
-        float: left;
-        width: 40px;
-        height: 40px;
-        padding: 15px;
-        margin: 2px;
-        border-style: solid;
-        border-width: 1px;
-        border-color: rgb(173, 173, 173);
-
-        text-align: center;
-        font-size: 30px;
-        align-items: center;
-        vertical-align: middle;
-      }
-      #disponibili {
-        top: 0;
-      }
-      #estratta,
-      #timer {
-        position: absolute;
-        left: 0;
-        right: 0;
-        align-items: center;
-        align-self: center;
-        align-content: center;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-      }
-      #estratta {
-        top: 15%;
-        bottom: 40%;
-        font-size: 250px;
-      }
-      #timer {
-        top: 60%;
-        bottom: 15%;
-        font-size: 150px;
-      }
-      #fatte {
-        bottom: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div id="azioni">
+      <div></div>
+      <button onclick="estrai()">Estrai</button>
+      <div></div>
+      <select name="alfabeto" id="alfabeto"></select>
+      <div></div>
+      <input type="time" name="tempo" id="tempo">
+      <div></div>
+    </div>
     <div id="dati">
       <ul id="disponibili">
-        <li onclick="estrai()" style="width: 150px">Estrai</li>
         <li v-for="disponibile in disponibili">{{ disponibile }}</li>
       </ul>
       <h1 id="estratta">{{ estratta }}</h1>
@@ -78,74 +31,10 @@
         <li v-for="fatta in fatte">{{ fatta }}</li>
       </ul>
     </div>
+    <audio src="start.mp3" id="audioS" hidden></audio>
+    <audio src="end.mp3" id="audioE" hidden></audio>
   </body>
-  <script>
-    const baseTimer = 2 * 60; // 2 minuti in secondi
-    let estrattaLabel = document.getElementById("estratta");
 
-    var datiApp = new Vue({
-      el: "#dati",
-      data: {
-        disponibili: [
-          "Q",
-          "W",
-          "E",
-          "R",
-          "T",
-          "Y",
-          "U",
-          "I",
-          "O",
-          "P",
-          "A",
-          "S",
-          "D",
-          "F",
-          "G",
-          "H",
-          "J",
-          "K",
-          "L",
-          "Z",
-          "X",
-          "C",
-          "V",
-          "B",
-          "N",
-          "M",
-        ],
-        estratta: "Estrai",
-        timer: "x:xx",
-        effTime: baseTimer,
-        timout: 0,
-        fatte: [],
-      },
-    });
-
-    function estrai() {
-      clearTimeout(datiApp._data.timout);
-      datiApp._data.effTime = baseTimer;
-      if (datiApp._data.disponibili.length) {
-        let idx = Math.floor(
-          (Math.random() * 1000) % datiApp._data.disponibili.length
-        );
-        datiApp._data.estratta = datiApp._data.disponibili[idx];
-        datiApp._data.fatte.push(datiApp._data.disponibili[idx]);
-        datiApp._data.disponibili.splice(idx, 1);
-        timer();
-      } else datiApp._data.estratta = "Terminato";
-    }
-
-    function timer() {
-      //let time = baseTimer;
-      datiApp._data.effTime = datiApp._data.effTime - 1;
-      let min = datiApp._data.effTime / 60,
-        sec = Math.floor((min - Math.floor(min)) * 60);
-      min = Math.floor(min);
-      datiApp._data.timer = min + ":" + (sec < 10 ? "0" : "") + sec;
-
-      if (datiApp._data.effTime) datiApp._data.timout = setTimeout(timer, 1000);
-      else datiApp._data.estratta = "Scaduto";
-    }
-  </script>
+  <script src="Alfabeti.js"></script>
+  <script src="script.js"></script>
 </html>
